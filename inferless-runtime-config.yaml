@@ -28,3 +28,4 @@ build:
     - "simpleeval==0.9.13"
     - "imageio-ffmpeg==0.5.1"
     - "pypng==0.20220715.0"
+    - "huggingface-hub==0.25.2"
