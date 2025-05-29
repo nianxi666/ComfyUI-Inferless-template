@@ -1,10 +1,10 @@
 comfy --skip-prompt --workspace=$NFS_VOLUME/ComfyUI install --nvidia
-pip install websocket-client
+pip3 install websocket-client
 /usr/bin/python3 -m pip install -r /var/nfs-mount/comfyui-storage/ComfyUI/requirements.txt
 pip3 install av
 pip3 install -r /var/nfs-mount/comfyui-storage/ComfyUI/requirements.txt
 pip3 install spaces
-pythoon --version
+python --version
 comfy --skip-prompt model download --url https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors --relative-path models/unet --set-civitai-api-token $HF_ACCESS_TOKEN
 comfy --skip-prompt model download --url https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors --relative-path models/clip
 comfy --skip-prompt model download --url https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors --relative-path models/clip
