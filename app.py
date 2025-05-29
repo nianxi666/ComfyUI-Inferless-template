@@ -8,7 +8,7 @@ import json
 class InferlessPythonModel:
     def initialize(self):
         self.directory_path = os.getenv('NFS_VOLUME')
-        subprocess.run(["wget", "https://github.com/nianxi666/ComfyUI-Inferless-template/blob/main/build.sh"])
+        subprocess.run(["wget", "https://raw.githubusercontent.com/nianxi666/ComfyUI-Inferless-template/main/build.sh"])
         subprocess.run(["bash", "build.sh"], check=True)
           
         self._data_dir = self.directory_path+"/workflows"
