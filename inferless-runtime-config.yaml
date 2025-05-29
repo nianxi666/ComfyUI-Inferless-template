@@ -30,3 +30,4 @@ build:
     - "pypng==0.20220715.0"
     - "huggingface-hub==0.25.2"
     - "av"
+    - "websocket"
