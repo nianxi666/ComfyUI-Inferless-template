@@ -10,6 +10,7 @@ class InferlessPythonModel:
         self.directory_path = os.getenv('NFS_VOLUME')
         subprocess.run(["wget", "https://raw.githubusercontent.com/nianxi666/ComfyUI-Inferless-template/main/build.sh"])
         subprocess.run(["bash", "build.sh"], check=True)
+        subprocess.run(["pip", "list"], check=True)
           
         self._data_dir = self.directory_path+"/workflows"
         self.server_address = "127.0.0.1:8188"
