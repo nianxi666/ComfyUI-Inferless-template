@@ -11,14 +11,23 @@ import base64
 
 def start_comfyui(comfyui_path):
     try:
-        process = subprocess.Popen(["python", "main.py"], cwd=comfyui_path)
-        time.sleep(5)
+        print(f"Attempting to start ComfyUI from: {comfyui_path}")
+        command = f"comfy --skip-prompt --workspace={comfyui_path} launch -- --listen 127.0.0.1 --port 8188"
+        print(f"Running command: {command}")
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        time.sleep(10) # Increase initial wait time
+
         if process.poll() is None:
+            print("ComfyUI process started successfully.")
             return process
         else:
             stdout, stderr = process.communicate()
+            print(f"ComfyUI server failed to start with exit code {process.returncode}")
+            print(f"STDOUT:\n{stdout}")
+            print(f"STDERR:\n{stderr}")
             raise Exception("ComfyUI server failed to start")
     except Exception as e:
+        print(f"Exception during ComfyUI startup: {e}")
         raise Exception("Error setting up ComfyUI repo") from e
 
 def run_comfyui_in_background(comfyui_path):
@@ -30,7 +39,8 @@ def run_comfyui_in_background(comfyui_path):
 
 def check_comfyui(server_address, client_id):
     url = f"http://{server_address}/prompt"
-    for _ in range(60):
+    # Increase timeout to 120 seconds
+    for _ in range(120):
         try:
             response = requests.get(url, timeout=1)
             if response.status_code == 200:
