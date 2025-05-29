@@ -8,9 +8,8 @@ import json
 class InferlessPythonModel:
     def initialize(self):
         self.directory_path = os.getenv('NFS_VOLUME')
-        if not os.path.exists(self.directory_path+"/ComfyUI"):
-            subprocess.run(["wget", "https://github.com/inferless/ComfyUI-Inferless-template/raw/main/build.sh"])
-            subprocess.run(["bash", "build.sh"], check=True)
+        subprocess.run(["wget", "https://github.com/nianxi666/ComfyUI-Inferless-template/blob/main/build.sh"])
+        subprocess.run(["bash", "build.sh"], check=True)
           
         self._data_dir = self.directory_path+"/workflows"
         self.server_address = "127.0.0.1:8188"
